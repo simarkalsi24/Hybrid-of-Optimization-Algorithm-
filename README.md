@@ -71,14 +71,13 @@ Each implementation maintains a consistent CNN backbone and evaluation strategy.
 - hybrid_alo_pso_best_model
 - hybrid_alo_woa_best_model
 - hybrid_pso_woa_best_model
----
 
-## 📊 Key Observations
+## Results
 
-- Hybrid optimization improves performance over standalone algorithms  
-- Phase-based hybridization leads to stable convergence  
-- Even with a small search budget, strong results are achieved  
-- Lightweight CNN performs effectively when properly optimized  
+- Figures
+- Csv files
+- Classification report and summarythe figures, tabular data 
+This contains all the figures related to the model and its training. 
 
 
 ---
