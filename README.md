@@ -56,15 +56,21 @@ Each hybrid method follows a two-phase strategy:
 
 ---
 
-## 🔬 Hybrid Algorithms Implemented
+## Hybrid Codes for Algorithm
 
 - ALO + Whale Optimization  
 - ALO + Dragonfly Algorithm  
-- ALO + PSO  
+- ALO + PSO Algortihm
 - PSO + Whale Optimization  
 
 Each implementation maintains a consistent CNN backbone and evaluation strategy.
 
+## Keras files for model loading
+
+- hybrid_alo_da_best_model
+- hybrid_alo_pso_best_model
+- hybrid_alo_woa_best_model
+- hybrid_pso_woa_best_model
 ---
 
 ## 📊 Key Observations
@@ -73,19 +79,6 @@ Each implementation maintains a consistent CNN backbone and evaluation strategy.
 - Phase-based hybridization leads to stable convergence  
 - Even with a small search budget, strong results are achieved  
 - Lightweight CNN performs effectively when properly optimized  
-
----
-
-## 📈 Results
-
-The models achieved high classification accuracy on the Tomato Leaf Disease dataset.
-
-Among all approaches:
-- Hybrid methods showed improved convergence behavior  
-- Certain combinations (e.g., ALO-based hybrids) performed consistently well  
-
-Pretrained models are available in the repository.
-
 
 
 ---
