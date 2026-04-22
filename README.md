@@ -86,30 +86,7 @@ Among all approaches:
 
 Pretrained models are available in the repository.
 
----
 
-## ⚠️ Limitations
-
-- Experiments are limited to a single dataset  
-- Only a small set of hyperparameters is optimized  
-- Optimization budget is relatively low  
-- Fitness evaluation uses short training cycles  
-
----
-
-## 🚀 Future Work
-
-- Extend to multiple datasets  
-- Optimize additional parameters (filters, layers, batch size)  
-- Explore adaptive hybrid strategies  
-- Integrate explainable AI methods (Grad-CAM)  
-- Deploy models in real-world agricultural systems  
-
----
-
-## 👨‍💻 Author
-
-**Simar Kalsi**
 
 ---
 
