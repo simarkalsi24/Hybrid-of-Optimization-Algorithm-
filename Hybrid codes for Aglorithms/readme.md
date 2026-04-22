@@ -1,1 +1,86 @@
+# Hybrid Optimization Algorithms (CNN Hyperparameter Tuning)
+
+This folder contains the core implementations of hybrid metaheuristic optimization techniques used to tune a Convolutional Neural Network (CNN) for plant leaf disease classification.
+
+Instead of relying on a single optimization algorithm, the goal here was to explore how combining two algorithms affects performance. Each notebook applies a hybrid strategy where one algorithm helps explore the search space and the other refines the best solutions.
+
+---
+
+## What these codes do
+
+Each notebook follows the same pipeline:
+
+- A lightweight CNN model is defined using TensorFlow/Keras  
+- The model is trained on a tomato leaf disease dataset  
+- Two hyperparameters are optimized:
+  - Learning rate  
+  - Dropout rate  
+
+The optimization works by generating multiple candidate solutions, training the CNN briefly for each, and selecting the best based on validation accuracy.
+
+To keep the process efficient, each model is trained for a small number of epochs with early stopping. Once the best parameters are found, the model is retrained properly using those values.
+
+---
+
+## Hybrid algorithms implemented
+
+The following hybrid combinations are included:
+
+- ALO + Whale Optimization  
+- ALO + Dragonfly Algorithm  
+- ALO + PSO  
+- PSO + Whale Optimization  
+
+Each hybrid is implemented in a structured way:
+
+- First half of iterations → exploration  
+- Second half → exploitation  
+
+This allows the algorithm to first search broadly and then refine the best solutions.
+
+---
+
+## CNN architecture
+
+All notebooks use the same CNN architecture:
+
+- 3 convolutional blocks (Conv → BatchNorm → MaxPooling)  
+- Global Average Pooling  
+- Dense layer (128 units)  
+- Dropout (optimized)  
+- Softmax output layer  
+
+The architecture is intentionally kept fixed so that improvements come from optimization, not model changes.
+
+---
+
+## Fitness evaluation
+
+Model performance is measured using validation accuracy.
+
+To speed up optimization:
+- Each candidate is trained for ~5 epochs  
+- Early stopping is applied  
+
+This provides a fast but reasonable estimate of performance.
+
+---
+
+## Final training
+
+After optimization:
+
+- Best hyperparameters are selected  
+- The CNN is retrained for more epochs  
+- Callbacks like learning rate scheduling and checkpointing are used  
+
+Final models are saved and evaluated on the test dataset.
+
+---
+
+## Notes
+
+- Each notebook can be run independently  
+- Same dataset and preprocessing are used across all experiments  
+- Results may vary slightly due to randomness  
 
