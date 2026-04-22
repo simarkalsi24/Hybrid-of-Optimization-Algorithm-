@@ -1,16 +1,14 @@
 # Hybrid Optimization Algorithms (CNN Hyperparameter Tuning)
 
+This folder contains the core implementations of hybrid metaheuristic optimization techniques used to tune a Convolutional Neural Network (CNN) for plant leaf disease classification.
 
-
-This folder contains the core experimental implementations of hybrid metaheuristic optimization techniques used to tune a Convolutional Neural Network (CNN) for plant leaf disease classification.
-
-The idea behind these implementations was not just to apply optimization algorithms, but to understand how different strategies behave when combined. Instead of relying on a single optimizer, each notebook explores a hybrid approach where two algorithms are used sequentially — one focusing on exploring the search space and the other refining the solutions.
+Instead of relying on a single optimization algorithm, the goal here was to explore how combining two algorithms affects performance. Each notebook applies a hybrid strategy where one algorithm helps explore the search space and the other refines the best solutions.
 
 ---
 
-## 🧠 What these codes do
+## What these codes do
 
-Each notebook follows the same overall pipeline:
+Each notebook follows the same pipeline:
 
 - A lightweight CNN model is defined using TensorFlow/Keras  
 - The model is trained on a tomato leaf disease dataset  
@@ -18,87 +16,70 @@ Each notebook follows the same overall pipeline:
   - Learning rate  
   - Dropout rate  
 
-The optimization process works by generating multiple candidate solutions (sets of hyperparameters), training the CNN briefly for each one, and selecting the best based on validation accuracy.
+The optimization works by generating multiple candidate solutions, training the CNN briefly for each, and selecting the best based on validation accuracy.
 
-To keep the process computationally feasible, each candidate model is trained for a small number of epochs, with early stopping applied. Once the best parameters are found, the model is retrained properly using those optimized values.
-
----
-
-## ⚙️ Hybrid Strategy
-
-Each notebook implements a different hybrid combination of algorithms:
-
-- **ALO + Whale Optimization**  
-- **ALO + Dragonfly Algorithm**  
-- **ALO + PSO**  
-- **PSO + Whale Optimization**  
-
-The hybridization is done in a simple but structured way:
-
-- The **first half of the iterations** focuses on exploration  
-  (random walks or population-based search depending on the algorithm)
-
-- The **second half shifts to exploitation**  
-  (refining the best solutions using swarm or behavior-based updates)
-
-This phased approach allows the model to first search broadly and then gradually focus on the most promising regions of the parameter space.
+To keep the process efficient, each model is trained for a small number of epochs with early stopping. Once the best parameters are found, the model is retrained properly using those values.
 
 ---
 
-## 🧱 CNN Architecture
+## Hybrid algorithms implemented
 
-All notebooks use the same base CNN to ensure consistency across experiments:
+The following hybrid combinations are included:
+
+- ALO + Whale Optimization  
+- ALO + Dragonfly Algorithm  
+- ALO + PSO  
+- PSO + Whale Optimization  
+
+Each hybrid is implemented in a structured way:
+
+- First half of iterations → exploration  
+- Second half → exploitation  
+
+This allows the algorithm to first search broadly and then refine the best solutions.
+
+---
+
+## CNN architecture
+
+All notebooks use the same CNN architecture:
 
 - 3 convolutional blocks (Conv → BatchNorm → MaxPooling)  
-- Global Average Pooling (to reduce parameters)  
+- Global Average Pooling  
 - Dense layer (128 units)  
-- Dropout (optimized during search)  
+- Dropout (optimized)  
 - Softmax output layer  
 
-Keeping the architecture fixed was intentional, so that any performance improvement comes from the optimization strategy rather than changes in the model itself.
+The architecture is intentionally kept fixed so that improvements come from optimization, not model changes.
 
 ---
 
-## 📊 Fitness Evaluation
+## Fitness evaluation
 
-The performance of each candidate solution is measured using **validation accuracy**.
+Model performance is measured using validation accuracy.
 
-To speed up the search:
-- Each model is trained for only a few epochs (typically 5)
-- Early stopping is used to avoid unnecessary training
+To speed up optimization:
+- Each candidate is trained for ~5 epochs  
+- Early stopping is applied  
 
-This makes the optimization process efficient while still giving a reliable estimate of model performance.
+This provides a fast but reasonable estimate of performance.
 
 ---
 
-## 🧪 Final Training
+## Final training
 
 After optimization:
-- The best hyperparameters are selected  
-- The CNN is retrained for a larger number of epochs  
-- Callbacks such as learning rate scheduling and checkpointing are used  
 
-The final trained models are saved and later evaluated on the test set.
+- Best hyperparameters are selected  
+- The CNN is retrained for more epochs  
+- Callbacks like learning rate scheduling and checkpointing are used  
 
----
-
-## 💡 Why this approach
-
-The main goal here was not just to get high accuracy, but to study behavior:
-
-- How different algorithms explore the search space  
-- Whether combining them improves convergence  
-- How stable the solutions are across iterations  
-
-Rather than designing overly complex hybrids, the focus was on keeping the logic simple and interpretable, while still being effective.
+Final models are saved and evaluated on the test dataset.
 
 ---
 
-## 📌 Notes
+## Notes
 
-- All notebooks are self-contained and can be run independently  
-- The same dataset split and preprocessing are used across all experiments  
-- Results may vary slightly due to randomness in optimization  
-
----
-
+- Each notebook can be run independently  
+- Same dataset and preprocessing are used across all experiments  
+- Results may vary slightly due to randomness  
